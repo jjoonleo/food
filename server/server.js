@@ -11,9 +11,10 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8000;
 
-app.get("/", (req, res) => {
+app.get("/hi", (req, res) => {
+    console.log("/ called");
     res.json({
-        "msg":"hello world!!",
+        "msg":"hello world!",
     });
 });
 
