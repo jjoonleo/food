@@ -32,7 +32,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-
+    volumes:
+      - mongodb-data:/data/db
 
     # mongo-express should only be used privately for development purposes.
     # It helps us interact with a mongoDB database using our browser
@@ -48,6 +49,8 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin123456
+    volumes:
+      - mongodb-data
 
   client:
     restart: always
@@ -77,3 +80,7 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - 8080:80
+
+volumes:
+  mongodb-data:
+    driver: local
