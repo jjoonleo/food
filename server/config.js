@@ -7,6 +7,10 @@ module.exports = {
             schemaName: "foodSchema",
             modelName: "Food",
         },
+        {
+            schemaName: "restaurantSchema",
+            modelName: "Restaurant",
+        },
     ],
     route_info: [
         {
