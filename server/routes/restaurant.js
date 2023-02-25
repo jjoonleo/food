@@ -5,6 +5,18 @@ router.use((req, res, next) => {
     next();
 });
 
+router.get("/all", (req,res)=>{
+    console.log("get /all called");
+    let db = req.app.get("database");
+    db.Restaurant.find((error,result)=>{
+        if(error){
+            res.send(error);
+        }
+        else{
+            res.json(result);
+        }
+    })
+});
 
 router.post("/", (req, res)=>{
     console.log("post called");
