@@ -12,12 +12,9 @@ module.exports = {
             modelName: "Restaurant",
         },
     ],
-    route_info: [
+    middleware_info: [
         {
-            file: "./test",
-            path: "/api",
-            type: "get",
-            method: "test",
+            path: "/restaurant",
         }
     ],
   };
