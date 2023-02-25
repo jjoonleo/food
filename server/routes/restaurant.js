@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+let tryCatch = require("../utils/tryCatch");
+
 router.use((req, res, next) => {
     console.log("restaurant middleware is called");
     next();
@@ -18,7 +20,7 @@ router.get("/all", (req,res)=>{
     })
 });
 
-router.post("/", (req, res)=>{
+router.post("/", tryCatch((req, res)=>{
     console.log("post called");
     console.log(req.body);
     let db = req.app.get("database");
@@ -32,6 +34,6 @@ router.post("/", (req, res)=>{
             res.status(201).json({success:true});
         }
     });
-});
+}));
 
 module.exports = router;
