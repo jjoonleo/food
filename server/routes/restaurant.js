@@ -20,7 +20,7 @@ router.get("/all", (req,res)=>{
     })
 });
 
-router.post("/", tryCatch((req, res)=>{
+router.post("/", (req, res)=>{
     console.log("post called");
     console.log(req.body);
     let db = req.app.get("database");
@@ -34,6 +34,6 @@ router.post("/", tryCatch((req, res)=>{
             res.status(201).json({success:true});
         }
     });
-}));
+});
 
 module.exports = router;
