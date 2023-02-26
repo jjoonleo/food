@@ -15,6 +15,9 @@ module.exports = {
     middleware_info: [
         {
             path: "/restaurant",
+        },
+        {
+            path: "/food",
         }
     ],
   };
