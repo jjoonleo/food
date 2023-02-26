@@ -3,7 +3,7 @@ let Schema = {};
 Schema.createSchema = (mongoose) => {
     let foodSchema = mongoose.Schema({
         name: {type: String, required: true},
-        spicy: {type: Boolean, required: true},//0:불닭이상 1:신라면 이상  2:매운 맛이 존재 4:매운맛이 없음
+        spicy: {type: Number, required: true},//0:불닭이상 1:신라면 이상  2:매운 맛이 존재 4:매운맛이 없음
         temperature: {type: Number, required: true},//0:HOT 1: NORMAL 2: COLD
 
         isSweet: {type:Boolean, required: true}, 
