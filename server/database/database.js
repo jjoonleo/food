@@ -27,7 +27,7 @@ function connect(app, config) {
 
         database.on("disconnected", () => {
             console.log("database disconnected. Reconnect in 5 seconds");
-            setInterval(connect, 5000);
+            setInterval(()=>connect(app, config), 5000);
         });
     });
 }
