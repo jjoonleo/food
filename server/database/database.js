@@ -27,7 +27,15 @@ function connect(app, config) {
 
         database.on("disconnected", () => {
             console.log("database disconnected. Reconnect in 5 seconds");
-            setInterval(()=>connect(app, config), 5000);
+            setInterval(()=>{
+                let databaseUrl = process.env.DATABASE_URL || config.db_url;
+
+                console.log("connecting to database .........");
+                mongoose.Promise = global.Promise;
+                mongoose.connect(databaseUrl, { useNewUrlParser: true });
+                database = mongoose.connection;
+                app.set("database", database);
+            }, 5000);
         });
     });
 }

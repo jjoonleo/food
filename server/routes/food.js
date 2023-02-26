@@ -20,8 +20,8 @@ router.get("/all", (req,res)=>{
     })
 });
 
-router.post("/", async(req, res)=>{
-    console.log("post called");
+router.post("/", tryCatch(async(req, res)=>{
+    console.log("post '/' called");
     console.log(req.body);
     let db = req.app.get("database");
 
@@ -29,15 +29,12 @@ router.post("/", async(req, res)=>{
     console.log(restaurant);
     req.body.restaurant = restaurant._id;
     let food = new db.Food(req.body);
-    food.save((error, _food) => {
-        if (error){
-            throw error;
-        }
-        else{
-            console.log(_food.name + " saved to foods collection.");
-            res.status(201).json({success:true});
-        }
-    });
-});
+    let result = await food.save();
+
+    if(result){
+        console.log(`${result.name} successfuly added to database`);
+        return res.status(201).json({success:true});
+    }
+}));
 
 module.exports = router;

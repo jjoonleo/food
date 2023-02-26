@@ -7,6 +7,7 @@ const cors = require("cors");
 const config = require("./config");
 const database = require("./database/database");
 const route_loader = require("./routes/route_loader");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 app.use(express.json());
@@ -26,6 +27,8 @@ app.get("/hi", (req, res) => {
         "msg":"hello world!",
     });
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, ()=>{
         console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
