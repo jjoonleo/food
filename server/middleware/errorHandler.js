@@ -1,4 +1,5 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const errorCode = require("../constants/errorCode");
 
 const errorHandler = (error, req, res, next) => {
     console.log("errorHandler middleware");
@@ -11,12 +12,23 @@ const errorHandler = (error, req, res, next) => {
             response = {
                 error:{
                     code: error.code,
-                    message:"duplicate key error",
+                    message:error.message,
                     name: error.name,
                 }
             };
             res.status(405).json(response);
         }
+    }
+    else if(error instanceof mongoose.Error.ValidationError){
+        response = {
+            error:{
+                code: errorCode.ValidationError,
+                message: error.message,
+                name: error.name,   
+                errors:error.errors,
+            }
+        };
+        res.status(400).json(response);
     }
     return res.status(400).send(error.message);
 }
