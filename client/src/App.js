@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./routes/Home";
+import AddRestaurant from './routes/AddRestaurant';
 
 function App() {
   const [err, setErr] = useState(null);
@@ -33,6 +34,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/addRestaurant" element={<AddRestaurant/>} />
         </Routes>
       </div>
     </Router>
