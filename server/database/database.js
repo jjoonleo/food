@@ -3,10 +3,10 @@ let database = {};
 
 database.init = (app, config) => {
     console.log("database.js: init() called.");
-    connect(app, config);
+    connect(app, config, true);
 };
 
-function connect(app, config) {
+function connect(app, config, first) {
     console.log("databse.js: connect() called");
 
     let databaseUrl = process.env.DATABASE_URL || config.db_url;
@@ -22,12 +22,15 @@ function connect(app, config) {
     );
     database.on("open", function () {
         console.log("successfully connected to database. : " + databaseUrl);
-
-        createSchema(app, config);
+        
+        if(first)
+            createSchema(app, config);
 
         database.on("disconnected", () => {
             console.log("database disconnected. Reconnect in 5 seconds");
-            setInterval(()=>connect(app, config), 5000);
+            setInterval(()=>{
+                connect(app,config,true);
+            }, 5000);
         });
     });
 }
