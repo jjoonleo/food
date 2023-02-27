@@ -10,6 +10,7 @@ import {
 
 import Home from "./routes/Home";
 import AddRestaurant from './routes/AddRestaurant';
+import AddFood from './routes/AddFood';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/addRestaurant" element={<AddRestaurant/>} />
+          <Route path="/addFood/:resturant" element={<AddFood/>} />
         </Routes>
       </div>
     </Router>

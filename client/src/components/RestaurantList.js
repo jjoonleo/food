@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RestaurantList = ({restaurants}) => {
     const length = restaurants.length;
+    const navigate = useNavigate();
     const onClick = (restaurant) => {
         console.log(restaurant.name);
+        navigate(`/addFood/${restaurant.name}`);
     }
 
     return(
