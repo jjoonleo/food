@@ -7,17 +7,11 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get("/all", (req,res)=>{
+router.get("/all", async (req,res)=>{
     console.log("get /all called");
     let db = req.app.get("database");
-    db.Food.find((error,result)=>{
-        if(error){
-            res.send(error);
-        }
-        else{
-            res.json(result);
-        }
-    })
+    let result = await db.Food.find();
+    res.status(200).json({result:result});
 });
 
 router.post("/", tryCatch(async(req, res)=>{
@@ -33,7 +27,10 @@ router.post("/", tryCatch(async(req, res)=>{
 
     if(result){
         console.log(`${result.name} successfuly added to database`);
-        return res.status(201).json({success:true});
+        return res.status(201).json({
+            result:result,
+            message: `successfuly added ${result.name} to database` 
+        });
     }
 }));
 
