@@ -1,6 +1,14 @@
 import "./App.css";
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+
+import Home from "./routes/Home";
 
 function App() {
   const [err, setErr] = useState(null);
@@ -21,12 +29,13 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello World!123!!!</h1>
-        <h1>text for testing server</h1>
-      </header>
-    </div>
+    <Router>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Home/>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
