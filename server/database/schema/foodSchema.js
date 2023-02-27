@@ -8,6 +8,7 @@ Schema.createSchema = (mongoose) => {
 
         isSweet: {type:Boolean, required: true}, 
         isSalty: {type: Boolean, required: true},
+        isGreasy: {type: Boolean, required: true},
 
         togo: {type: Boolean, required: true},
         delivery:{type: Boolean, required: true},
@@ -16,6 +17,7 @@ Schema.createSchema = (mongoose) => {
         country: {type: Number, required: true}, //0:한식 1:양식 2:중식 3:일식 4:동남아시아 5:그 외
         cal: {type:Boolean, required: true}, //900 이상 true
         main_ingredient:{type: Number, required: true}, //0:밥 1:면 2:빵 3:떡 4:육류
+
         restaurant:{type: mongoose.Schema.Types.ObjectId, ref: "Restaurant", required: true},
     });
 
