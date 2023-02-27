@@ -7,11 +7,24 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get("/all", async (req,res)=>{
-    console.log("get /all called");
+router.get("/", async (req,res)=>{
+    console.log("get / called");
     let db = req.app.get("database");
-    let result = await db.Food.find();
-    res.status(200).json({result:result});
+    let query={};
+    console.log(req.query.restaurant);
+    if(req.query?.restaurant){
+        let restaurant = await db.Restaurant.findOne({name:req.query.restaurant[0]});
+        console.log(`restaurant name : ${restaurant?.name}`);
+        if(!restaurant){
+            return res.status(400).json({error:{message:"no such restaurant exists"}});
+        }
+        query = {restaurant:restaurant._id};
+    }
+    console.log(query);
+    let result = await db.Food.find(query);
+    return res.status(200).json({result:result});
+    
+    
 });
 
 router.post("/", tryCatch(async(req, res)=>{
