@@ -78,7 +78,7 @@ const AddRestaurant = () => {
     },[]);
 
     return(
-        <div className="App">
+        <div className={styles["frame"]}>
             <h1 className={styles["title-text"]}>매장 등록</h1>
             {Error? <p className={styles["error-text"]}>{Error}</p>:null}
             <input className={styles["name-input"]} spellCheck="false" type="text" placeholder="restaurant name" value={restaurantNameText} onChange={(e)=>setRestaurantNameText(e.target.value)}/>

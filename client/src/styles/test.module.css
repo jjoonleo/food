@@ -1,5 +1,5 @@
 .frame{
-    display: flexbox;
+    display: grid;
 }
 
 .list-btn{
@@ -60,5 +60,5 @@
     font-weight: 500;
     font-size: 15px;
 
-    margin: 0px
+    margin: 0px;
 }
