@@ -42,5 +42,7 @@
 }
 
 .title-text{
-    
+    font-family: Noto Sans KR;
+    font-weight: bold;
+    font-size: 80px;
 }
