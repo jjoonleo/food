@@ -1,5 +1,6 @@
 .frame{
     display: grid;
+    justify-items: center;
 }
 
 .list-btn{
@@ -12,6 +13,13 @@
     font-family: Noto Sans KR;
     font-weight: 500;
     font-size: 50px;
+
+    text-align: center;
+}
+
+.list-div{
+    justify-content: center;
+    display: flex;
 }
 
 .name-input{

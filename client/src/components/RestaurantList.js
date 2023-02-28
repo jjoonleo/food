@@ -16,7 +16,7 @@ const RestaurantList = ({restaurants}) => {
                 const options=[];
                 for(let i = 0; i < length; i++){
                     console.log(i);
-                    options.push(<div><button className={styles["list-btn"]} onClick={()=>{onClick(restaurants[i])}}>{restaurants[i].name}</button></div>);
+                    options.push(<div className={styles["list-div"]}><button className={styles["list-btn"]} onClick={()=>{onClick(restaurants[i])}}>{restaurants[i].name}</button></div>);
                 }
                 return options;
             })()}
