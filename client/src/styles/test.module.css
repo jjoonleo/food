@@ -27,6 +27,8 @@
     border-left: none;
     border-right: none;
     outline: none;
+
+    width: 500px;
     
     border-bottom-color: #BDDCD2;
     background-color: white;
@@ -50,7 +52,8 @@
     font-weight: 700;
     font-size: 25px;
 
-    padding: 7px 130px 7px 130px;
+    padding: 7px 180px 7px 180px;
+    margin-top: 25px;
 }
 
 .title-text{
