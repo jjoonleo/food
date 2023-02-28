@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState }  from 'react';
 import RestaurantList from '../components/RestaurantList';
 import errorCode from '../constants/errorCode';
+import style from '../styles/test.module.css'
 
 const AddRestaurant = () => {
     const [restaurantNameText, setRestaurantNameText] = useState("");

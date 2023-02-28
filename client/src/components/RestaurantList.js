@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import style from '../styles/test.module.css'
 
 const RestaurantList = ({restaurants}) => {
     const length = restaurants.length;
