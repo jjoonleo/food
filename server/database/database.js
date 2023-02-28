@@ -23,6 +23,7 @@ function connect(app, config, first) {
     database.on("open", function () {
         console.log("successfully connected to database. : " + databaseUrl);
         
+        console.log(first);
         if(first)
             createSchema(app, config);
 
