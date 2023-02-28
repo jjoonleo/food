@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState }  from 'react';
 import RestaurantList from '../components/RestaurantList';
 import errorCode from '../constants/errorCode';
-import style from '../styles/test.module.css'
+import styles from '../styles/test.module.css'
 
 const AddRestaurant = () => {
     const [restaurantNameText, setRestaurantNameText] = useState("");
@@ -80,7 +80,7 @@ const AddRestaurant = () => {
     return(
         <div className="App">
             {Error? <p>{Error}</p>:null}
-            <input type="text" placeholder="restaurant name" value={restaurantNameText} onChange={(e)=>setRestaurantNameText(e.target.value)}/>
+            <input className={styles["name-input"]} spellCheck="false" type="text" placeholder="restaurant name" value={restaurantNameText} onChange={(e)=>setRestaurantNameText(e.target.value)}/>
             <button onClick={handleSubmit}>submit</button>
             {restaurants?<RestaurantList restaurants={restaurants}/>:null}
         </div>
