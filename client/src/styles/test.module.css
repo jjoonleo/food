@@ -17,13 +17,30 @@
     outline: none;
     
     border-bottom-color: #BDDCD2;
-
     background-color: white;
+    caret-color: #BDDCD2;
 
     font-family: Noto Sans KR;
     font-weight: 500;
     font-size: 35px;
     text-align: center;
+}
 
-    caret-color: #BDDCD2;
+.submit-btn{
+    border: none;
+    outline: none;
+    border-radius: 7px;
+
+    background-color: #BDDCD2;
+    color: white;
+
+    font-family: Noto Sans KR;
+    font-weight: 700;
+    font-size: 25px;
+
+    padding: 7px 130px 7px 130px;
+}
+
+.title-text{
+    
 }
