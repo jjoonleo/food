@@ -53,7 +53,7 @@ function reconnect(app, config){
 
     console.log("connecting to database .........");
     mongoose.Promise = global.Promise;
-    mongoose.connect(databaseUrl, { useNewUrlParser: true });
+    mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
     database = mongoose.connection;
 
     database.on(
