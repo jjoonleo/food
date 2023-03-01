@@ -30,7 +30,33 @@ function connect(app, config, first) {
         database.on("disconnected", () => {
             console.log("database disconnected. Reconnect in 5 seconds");
             setInterval(()=>{
-                connect(app,config,false);
+                reconnect(app,config);
+            }, 5000);
+        });
+    });
+}
+
+function reconnect(app, config){
+    console.log("databse.js: reconnect() called");
+
+    let databaseUrl = process.env.DATABASE_URL || config.db_url;
+
+    console.log("connecting to database .........");
+    mongoose.Promise = global.Promise;
+    mongoose.connect(databaseUrl, { useNewUrlParser: true });
+    database = mongoose.connection;
+
+    database.on(
+        "error",
+        console.error.bind(console, "mongoose connection error.")
+    );
+    database.on("open", function () {
+        console.log("successfully connected to database. : " + databaseUrl);
+
+        database.on("disconnected", () => {
+            console.log("database disconnected. Reconnect in 5 seconds");
+            setInterval(()=>{
+                reconnect(app,config);
             }, 5000);
         });
     });
