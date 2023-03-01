@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 mongodb/
+.mongodb/
+./mongodb/
+.wt
