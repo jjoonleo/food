@@ -3,7 +3,7 @@ const errorCode = require("../constants/errorCode");
 
 const errorHandler = (error, req, res, next) => {
     console.log("errorHandler middleware");
-    console.log(error.name);
+    console.log(error);
     let response;
     if(error.name == "MongoServerError"){
         if(error.code == 11000){

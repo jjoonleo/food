@@ -1,4 +1,4 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 let database = {};
 
 database.init = (app, config) => {
@@ -6,34 +6,44 @@ database.init = (app, config) => {
     connect(app, config, true);
 };
 
-function connect(app, config, first) {
-    console.log("databse.js: connect() called");
+async function connect(app, config, first) {
+    try {
+        console.log("databse.js: connect() called");
 
-    let databaseUrl = process.env.DATABASE_URL || config.db_url;
+        let databaseUrl = process.env.DATABASE_URL || config.db_url;
 
-    console.log("connecting to database .........");
-    mongoose.Promise = global.Promise;
-    mongoose.connect(databaseUrl, { useNewUrlParser: true });
-    database = mongoose.connection;
+        console.log("connecting to database .........");
+        console.log(`databas url ${process.env.MONGO_URI}`);
 
-    database.on(
-        "error",
-        console.error.bind(console, "mongoose connection error.")
-    );
-    database.on("open", function () {
-        console.log("successfully connected to database. : " + databaseUrl);
-        
-        console.log(first);
-        if(first)
-            createSchema(app, config);
-
-        database.on("disconnected", () => {
-            console.log("database disconnected. Reconnect in 5 seconds");
-            setInterval(()=>{
-                reconnect(app,config);
-            }, 5000);
+        mongoose.Promise = global.Promise;
+        const connect = await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            dbName: process.env.DB_NAME,
         });
-    });
+        database = connect.connection;
+        createSchema(app, config);
+
+        database.on(
+            "error",
+            console.error.bind(console, "mongoose connection error.")
+        );
+        database.on("open", function () {
+            console.log("successfully connected to database. : " + databaseUrl);
+
+            database.on("disconnected", () => {
+                console.log("database disconnected. Reconnect in 5 seconds");
+                setInterval(()=>{
+                    reconnect(app,config);
+                }, 5000);
+            });
+        });
+    } catch (error) {
+        console.log(error);
+        setInterval(()=>{
+            reconnect(app,config);
+        }, 5000);
+    }
+    
 }
 
 function reconnect(app, config){
